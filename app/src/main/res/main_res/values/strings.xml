@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MobileTerminal_Android</string>
+    <string name="robot">RoBot</string>
+    <string name="jog">Jog</string>
+    <string name="setting">Setting</string>
+    <string name="account">Account</string>
+
+</resources>
