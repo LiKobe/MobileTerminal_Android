@@ -12,7 +12,7 @@ import com.robotlinker.account.AccountFragment;
 import com.robotlinker.base.BaseActivity;
 import com.robotlinker.base.BaseFragment;
 import com.robotlinker.jog.JogFragment;
-import com.robotlinker.robot.RobotFragment;
+import com.robotlinker.robot.fragment.RobotFragment;
 import com.robotlinker.setting.SettingFragment;
 
 import butterknife.BindView;
