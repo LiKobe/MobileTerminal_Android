@@ -18,10 +18,6 @@
  */
 package ros.rosbridge.implementation;
 
-import com.jilk.ros.message.Message;
-import com.jilk.ros.rosbridge.indication.Indication;
-import com.jilk.ros.rosbridge.operation.Wrapper;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -29,6 +25,10 @@ import org.json.simple.parser.JSONParser;
 import java.io.StringReader;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+
+import ros.message.Message;
+import ros.rosbridge.indication.Indication;
+import ros.rosbridge.operation.Wrapper;
 
 
 // The slightly crazy abstractions here are designed to isolate knowledge of

@@ -18,9 +18,9 @@
  */
 package ros.rosbridge.operation;
 
-import com.jilk.ros.message.MessageType;
-import com.jilk.ros.rosbridge.indication.Indicated;
-import com.jilk.ros.rosbridge.indication.Indicator;
+import ros.message.MessageType;
+import ros.rosbridge.indication.Indicated;
+import ros.rosbridge.indication.Indicator;
 
 @MessageType(string = "wrapper")
 public class Wrapper extends Operation {

@@ -56,28 +56,13 @@ public class RobotFragment extends BaseFragment {
                 }.getType());
 
         for (String p : retMap.keySet()) {
-//            System.out.println("key:" + p + " values:" + retMap.get(p));
             Object o = retMap.get(p);
             Robot robot = new Robot();
             robot.setKey(p);
             robot.setValue(o);
 
-//            String json=new Gson().toJson(o);
-//            try {
-//                JSONObject customJson = new JSONObject(json);
-//                System.out.println(customJson.names());
-//                List<String> list=new Gson().fromJson(customJson.names().toString(),new TypeToken<List<String>>(){}.getType());
-//                for (String s : list){
-//                    System.out.println(s);
-//                    System.out.println(customJson.get(s));
-//                }
-//
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
             rlist.add(robot);
         }
-//        System.out.println(retMap);
         return rlist;
     }
 

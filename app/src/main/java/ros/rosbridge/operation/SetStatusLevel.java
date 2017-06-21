@@ -18,7 +18,7 @@
  */
 package ros.rosbridge.operation;
 
-import com.jilk.ros.message.MessageType;
+import ros.message.MessageType;
 
 @MessageType(string = "set_level")
 public class SetStatusLevel extends Operation {

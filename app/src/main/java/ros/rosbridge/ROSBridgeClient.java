@@ -18,22 +18,22 @@
  */
 package ros.rosbridge;
 
-import com.jilk.ros.ROSClient;
-import com.jilk.ros.Service;
-import com.jilk.ros.message.Message;
-import com.jilk.ros.message.MessageType;
-import com.jilk.ros.rosapi.message.Empty;
-import com.jilk.ros.rosapi.message.MessageDetails;
-import com.jilk.ros.rosapi.message.Nodes;
-import com.jilk.ros.rosapi.message.Services;
-import com.jilk.ros.rosapi.message.Topic;
-import com.jilk.ros.rosapi.message.Topics;
-import com.jilk.ros.rosapi.message.Type;
-import com.jilk.ros.rosapi.message.TypeDef;
-import com.jilk.ros.rosbridge.implementation.ROSBridgeWebSocketClient;
-import com.jilk.ros.rosbridge.operation.Operation;
-
 import java.lang.reflect.Field;
+
+import ros.ROSClient;
+import ros.Service;
+import ros.message.Message;
+import ros.message.MessageType;
+import ros.rosapi.message.Empty;
+import ros.rosapi.message.MessageDetails;
+import ros.rosapi.message.Nodes;
+import ros.rosapi.message.Services;
+import ros.rosapi.message.Topic;
+import ros.rosapi.message.Topics;
+import ros.rosapi.message.Type;
+import ros.rosapi.message.TypeDef;
+import ros.rosbridge.implementation.ROSBridgeWebSocketClient;
+import ros.rosbridge.operation.Operation;
 
 public class ROSBridgeClient extends ROSClient {
     String uriString;
@@ -181,10 +181,10 @@ public class ROSBridgeClient extends ROSClient {
     }
 
     private String getServiceType(String service) throws InterruptedException {
-        Service<com.jilk.ros.rosapi.message.Service, Type> serviceTypeService =
-                new Service<com.jilk.ros.rosapi.message.Service, Type>("/rosapi/service_type",
-                        com.jilk.ros.rosapi.message.Service.class, Type.class, this);
-        return serviceTypeService.callBlocking(new com.jilk.ros.rosapi.message.Service(service)).type;
+        Service<ros.rosapi.message.Service, Type> serviceTypeService =
+                new Service<ros.rosapi.message.Service, Type>("/rosapi/service_type",
+                        ros.rosapi.message.Service.class, Type.class, this);
+        return serviceTypeService.callBlocking(new ros.rosapi.message.Service(service)).type;
     }
 
     private TypeDef findType(String type, TypeDef[] types) {

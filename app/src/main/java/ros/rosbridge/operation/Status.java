@@ -18,7 +18,7 @@
  */
 package ros.rosbridge.operation;
 
-import com.jilk.ros.message.MessageType;
+import ros.message.MessageType;
 
 @MessageType(string = "status")
 public class Status extends Operation {

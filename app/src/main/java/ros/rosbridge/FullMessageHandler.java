@@ -18,7 +18,7 @@
  */
 package ros.rosbridge;
 
-import com.jilk.ros.message.Message;
+import ros.message.Message;
 
 public interface FullMessageHandler<T extends Message> {
     public void onMessage(String id, T message);
