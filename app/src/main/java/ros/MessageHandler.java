@@ -18,7 +18,7 @@
  */
 package ros;
 
-import com.jilk.ros.message.Message;
+import ros.message.Message;
 
 public interface MessageHandler<T extends Message> {
     public void onMessage(T message);

@@ -18,8 +18,9 @@
  */
 package ros.rosapi.message;
 
-import com.jilk.ros.message.Message;
-import com.jilk.ros.message.MessageType;
+
+import ros.message.Message;
+import ros.message.MessageType;
 
 @MessageType(string = "rosapi/Type")
 public class Type extends Message {

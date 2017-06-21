@@ -18,11 +18,11 @@
  */
 package ros;
 
-import com.jilk.ros.message.Message;
-import com.jilk.ros.rosapi.message.TypeDef;
-import com.jilk.ros.rosbridge.FullMessageHandler;
-import com.jilk.ros.rosbridge.ROSBridgeClient;
-import com.jilk.ros.rosbridge.operation.Operation;
+import ros.message.Message;
+import ros.rosapi.message.TypeDef;
+import ros.rosbridge.FullMessageHandler;
+import ros.rosbridge.ROSBridgeClient;
+import ros.rosbridge.operation.Operation;
 
 public abstract class ROSClient {
 

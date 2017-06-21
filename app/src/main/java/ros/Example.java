@@ -18,13 +18,14 @@
  */
 package ros;
 
-import com.jilk.ros.message.Clock;
-import com.jilk.ros.message.Log;
-import com.jilk.ros.rosapi.message.Empty;
-import com.jilk.ros.rosapi.message.GetTime;
-import com.jilk.ros.rosapi.message.MessageDetails;
-import com.jilk.ros.rosapi.message.Type;
-import com.jilk.ros.rosbridge.ROSBridgeClient;
+import ros.message.Clock;
+import ros.message.Log;
+import ros.rosapi.message.Empty;
+import ros.rosapi.message.GetTime;
+import ros.rosapi.message.MessageDetails;
+import ros.rosapi.message.Type;
+import ros.rosbridge.ROSBridgeClient;
+
 
 public class Example {
 
@@ -51,11 +52,11 @@ public class Example {
             timeService.verify();
             //System.out.println("Time (secs): " + timeService.callBlocking(new Empty()).time.sec);
 
-            Service<com.jilk.ros.rosapi.message.Service, Type> serviceTypeService =
-                    new Service<com.jilk.ros.rosapi.message.Service, Type>("/rosapi/service_type",
-                            com.jilk.ros.rosapi.message.Service.class, Type.class, client);
+            Service<ros.rosapi.message.Service, Type> serviceTypeService =
+                    new Service<ros.rosapi.message.Service, Type>("/rosapi/service_type",
+                            ros.rosapi.message.Service.class, Type.class, client);
             serviceTypeService.verify();
-            String type = serviceTypeService.callBlocking(new com.jilk.ros.rosapi.message.Service("/rosapi/service_response_details")).type;
+            String type = serviceTypeService.callBlocking(new ros.rosapi.message.Service("/rosapi/service_response_details")).type;
 
             Service<Type, MessageDetails> serviceDetails =
                     new Service<Type, MessageDetails>("/rosapi/service_response_details",
@@ -63,10 +64,10 @@ public class Example {
             serviceDetails.verify();
             //serviceDetails.callBlocking(new Type(type)).print();
 
-            com.jilk.ros.Topic<Log> logTopic =
-                    new com.jilk.ros.Topic<Log>("/rosout", Log.class, client);
+            Topic<Log> logTopic =
+                    new Topic<Log>("/rosout", Log.class, client);
             logTopic.verify();
-            
+
             /*
             System.out.println("Nodes");
             for (String s : client.getNodes())
@@ -117,7 +118,7 @@ public class Example {
     }
 
     public static void testTopic(ROSBridgeClient client) {
-        com.jilk.ros.Topic<Clock> clockTopic = new com.jilk.ros.Topic<Clock>("/clock", Clock.class, client);
+        Topic<Clock> clockTopic = new Topic<Clock>("/clock", Clock.class, client);
         clockTopic.subscribe();
         try {
             Thread.sleep(20000);

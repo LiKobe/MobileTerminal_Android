@@ -18,10 +18,10 @@
  */
 package ros.rosapi.message;
 
-import com.jilk.ros.message.Message;
-import com.jilk.ros.message.MessageType;
-import com.jilk.ros.message.TimePrimitive;
 
+import ros.message.Message;
+import ros.message.MessageType;
+import ros.message.TimePrimitive;
 
 @MessageType(string = "rosapi/GetTimeResponse")
 public class GetTime extends Message {

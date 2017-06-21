@@ -18,11 +18,11 @@
  */
 package ros.rosbridge.operation;
 
-import com.jilk.ros.message.Message;
-import com.jilk.ros.message.MessageType;
-import com.jilk.ros.rosbridge.indication.AsArray;
-import com.jilk.ros.rosbridge.indication.Indicated;
-import com.jilk.ros.rosbridge.indication.Indicator;
+import ros.message.Message;
+import ros.message.MessageType;
+import ros.rosbridge.indication.AsArray;
+import ros.rosbridge.indication.Indicated;
+import ros.rosbridge.indication.Indicator;
 
 @MessageType(string = "call_service")
 public class CallService extends Operation {

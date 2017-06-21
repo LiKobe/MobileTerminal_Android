@@ -18,10 +18,10 @@
  */
 package ros.rosbridge.operation;
 
-import com.jilk.ros.message.Message;
-import com.jilk.ros.message.MessageType;
-import com.jilk.ros.rosbridge.implementation.JSON;
-import com.jilk.ros.rosbridge.implementation.Registry;
+import ros.message.Message;
+import ros.message.MessageType;
+import ros.rosbridge.implementation.JSON;
+import ros.rosbridge.implementation.Registry;
 
 @MessageType(string = "operation")
 public class Operation extends Message {

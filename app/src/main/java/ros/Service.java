@@ -18,14 +18,14 @@
  */
 package ros;
 
-import com.jilk.ros.message.Message;
-import com.jilk.ros.rosbridge.FullMessageHandler;
-import com.jilk.ros.rosbridge.operation.CallService;
-import com.jilk.ros.rosbridge.operation.ServiceResponse;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
+
+import ros.message.Message;
+import ros.rosbridge.FullMessageHandler;
+import ros.rosbridge.operation.CallService;
+import ros.rosbridge.operation.ServiceResponse;
 
 public class Service<CallType extends Message, ResponseType extends Message> extends Message implements FullMessageHandler {
     private String service;

@@ -18,16 +18,16 @@
  */
 package ros;
 
-import com.jilk.ros.message.Message;
-import com.jilk.ros.rosbridge.FullMessageHandler;
-import com.jilk.ros.rosbridge.operation.Advertise;
-import com.jilk.ros.rosbridge.operation.Operation;
-import com.jilk.ros.rosbridge.operation.Publish;
-import com.jilk.ros.rosbridge.operation.Subscribe;
-import com.jilk.ros.rosbridge.operation.Unadvertise;
-import com.jilk.ros.rosbridge.operation.Unsubscribe;
-
 import java.util.concurrent.LinkedBlockingQueue;
+
+import ros.message.Message;
+import ros.rosbridge.FullMessageHandler;
+import ros.rosbridge.operation.Advertise;
+import ros.rosbridge.operation.Operation;
+import ros.rosbridge.operation.Publish;
+import ros.rosbridge.operation.Subscribe;
+import ros.rosbridge.operation.Unadvertise;
+import ros.rosbridge.operation.Unsubscribe;
 
 
 public class Topic<T extends Message> extends LinkedBlockingQueue<T> implements FullMessageHandler {
