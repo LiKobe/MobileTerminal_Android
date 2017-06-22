@@ -31,7 +31,7 @@ import io.reactivex.functions.Consumer;
 
 public class SettingFragment extends BaseFragment {
 
-    @BindView(R.id.textView)
+    @BindView(R.id.tvAccountSetings)
     TextView textView;
     @BindView(R.id.spinner)
     Spinner spinner;
