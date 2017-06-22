@@ -1,17 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="171dp"
-        android:layout_height="185dp"
-        android:layout_marginTop="100dp"
-        android:text="account"
-        app:layout_constraintHorizontal_bias="0.502"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Account settings"
+        app:layout_constraintHorizontal_bias="0.372"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="99dp"
+        android:layout_height="69dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@android:drawable/ic_menu_gallery"
+        tools:layout_constraintTop_creator="1" />
+
+    <TextView
+        android:id="@+id/tvRobotName"
+        android:layout_width="94dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="14dp"
+        android:text="RobotName"
+        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintLeft_toRightOf="@+id/imageView2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <TextView
+        android:id="@+id/tvSerialNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Serial no"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/tvRobotName"
+        app:layout_constraintRight_toRightOf="@+id/tvRobotName"
+        app:layout_constraintTop_toBottomOf="@+id/tvRobotName"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="324dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@android:drawable/divider_horizontal_textfield"
+        tools:layout_editor_absoluteY="125dp" />
+
 </android.support.constraint.ConstraintLayout>
