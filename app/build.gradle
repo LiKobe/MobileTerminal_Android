@@ -49,5 +49,6 @@ dependencies {
     compile 'com.github.bmelnychuk:atv:1.2.+'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.amazonaws:aws-android-sdk-iot:2.2.+'
+    compile 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.3.2'
     testCompile 'junit:junit:4.12'
 }
