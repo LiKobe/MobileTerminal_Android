@@ -1,10 +1,15 @@
 package com.robotlinker.base;
 
+import android.content.Context;
+
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession;
 import com.amazonaws.regions.Regions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +52,99 @@ public class AppHelper {
      * e.g. if your user pools are in US East (N Virginia) then set cognitoRegion = Regions.US_EAST_1.
      */
     private static final Regions cognitoRegion = Regions.AP_NORTHEAST_1;
+
+    // User details from the service
+    private static CognitoUserSession currSession;
+    private static CognitoUserDetails userDetails;
+
+    private static boolean emailVerified;
+    private static boolean emailAvailable;
+
+    public static void init(Context context) {
+        setData();
+
+        if (appHelper != null && userPool != null) {
+            return;
+        }
+
+        if (appHelper == null) {
+            appHelper = new AppHelper();
+        }
+
+        if (userPool == null) {
+
+            // Create a user pool with default ClientConfiguration
+            userPool = new CognitoUserPool(context, userPoolId, clientId, clientSecret, cognitoRegion);
+
+            // This will also work
+            /*
+            ClientConfiguration clientConfiguration = new ClientConfiguration();
+            AmazonCognitoIdentityProvider cipClient = new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfiguration);
+            cipClient.setRegion(Region.getRegion(cognitoRegion));
+            userPool = new CognitoUserPool(context, userPoolId, clientId, clientSecret, cipClient);
+            */
+
+        }
+
+        emailVerified = false;
+        emailAvailable = false;
+
+//        currUserAttributes = new HashSet<String>();
+//        currDisplayedItems = new ArrayList<ItemToDisplay>();
+//        trustedDevices = new ArrayList<ItemToDisplay>();
+//        firstTimeLogInDetails = new ArrayList<ItemToDisplay>();
+//        firstTimeLogInUpDatedAttributes= new HashMap<String, String>();
+
+    }
+
+    public static CognitoUserPool getPool() {
+        return userPool;
+    }
+
+    public static void setCurrSession(CognitoUserSession session) {
+        currSession = session;
+    }
+    public static  CognitoUserSession getCurrSession() {
+        return currSession;
+    }
+
+    public static void setUserDetails(CognitoUserDetails details) {
+        userDetails = details;
+//        refreshWithSync();
+    }
+    public static  CognitoUserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public static String getCurrUser() {
+        return user;
+    }
+    public static void setUser(String newUser) {
+        user = newUser;
+    }
+
+
+    public static boolean isEmailVerified() {
+        return emailVerified;
+    }
+
+
+    public static boolean isEmailAvailable() {
+        return emailAvailable;
+    }
+
+    public static void setEmailVerified(boolean emailVerif) {
+        emailVerified = emailVerif;
+    }
+
+
+    public static void setEmailAvailable(boolean emailAvail) {
+        emailAvailable = emailAvail;
+    }
+
+//    public static void clearCurrUserAttributes() {
+//        currUserAttributes.clear();
+//    }
 
     private static void setData() {
         // Set attribute display sequence
