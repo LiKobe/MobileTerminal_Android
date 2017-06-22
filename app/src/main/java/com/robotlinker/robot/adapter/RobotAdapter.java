@@ -71,7 +71,7 @@ public class RobotAdapter extends BaseAdapterInject<Robot> {
                     TextView textView = new TextView(mContext);
                     textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     textView.setText("" + s + ": \t" + customJson.get(s));
-                    textView.setTextSize(28);
+                    textView.setTextSize(24);
                     textView.setPadding(30, 10, 30, 10);
                     System.out.println(s);
                     System.out.println(customJson.get(s));
