@@ -11,7 +11,7 @@
         android:id="@+id/tvRobotName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="26sp"
         tools:text="TCP POSE" />
 
     <com.robotlinker.robot.widget.FlowLayout
