@@ -1,5 +1,6 @@
 package com.robotlinker.setting;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -91,6 +92,7 @@ public class SettingFragment extends BaseFragment {
                     @Override
                     public void accept(@NonNull Object o) throws Exception {
                         // TODO: 2017/6/21  awstest
+                        startActivity(new Intent(getActivity(), PubSubActivity.class));
                     }
                 });
     }
