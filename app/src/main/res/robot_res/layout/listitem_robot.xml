@@ -3,19 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
     android:paddingLeft="10dp"
     android:paddingRight="10dp">
 
     <TextView
         android:id="@+id/tvRobotName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="0.8"
         android:textSize="26sp"
         tools:text="TCP POSE" />
 
-    <com.robotlinker.robot.widget.FlowLayout
-        android:id="@+id/flRobotAttribute"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btnSubscribe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:text="subscribe" />
 </LinearLayout>

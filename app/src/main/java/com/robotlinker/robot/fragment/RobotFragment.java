@@ -9,11 +9,16 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.orhanobut.logger.Logger;
 import com.robotlinker.R;
 import com.robotlinker.base.AppHelper;
-import com.robotlinker.base.BaseFragment;
+import com.robotlinker.base.BaseEventFragment;
 import com.robotlinker.robot.adapter.RobotAdapter;
 import com.robotlinker.robot.bean.Robot;
+import com.robotlinker.robot.event.ConnectSuccessEvent;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,20 +26,15 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 import ros.rosbridge.ROSBridgeClient;
 
 /**
  * Created by gaowubin on 2017/6/14.
  */
 
-public class RobotFragment extends BaseFragment {
+public class RobotFragment extends BaseEventFragment {
 
     ROSBridgeClient client;
-
-    private String[] topicList = new String[]{};
-
-
     @BindView(R.id.livRobot)
     ListView livRobot;
     RobotAdapter adapter;
@@ -51,19 +51,22 @@ public class RobotFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         adapter = new RobotAdapter(mContext);
-        adapter.setData(getData());
         livRobot.setAdapter(adapter);
+    }
 
-        client = AppHelper.getRosClient();
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(ConnectSuccessEvent event) {
+        Logger.i("ConnectSuccessEvent");
         try {
-            //Get list data
-            topicList = client.getTopics();
-        } catch (InterruptedException e) {
+            String[] topicList = AppHelper.getRosClient().getTopics();
+            Logger.i("topicList: " + new Gson().toJson(topicList));
+            List list = java.util.Arrays.asList(topicList);
+            adapter.setData(list);
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        int a = topicList.length;
 
     }
 

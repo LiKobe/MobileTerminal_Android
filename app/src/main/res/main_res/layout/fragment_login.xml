@@ -1,70 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    android:layout_marginLeft="32dp"
+    android:layout_marginRight="32dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
-        app:srcCompat="@mipmap/ic_launcher"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
-        app:layout_constraintRight_toLeftOf="@+id/guideline7"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="0dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline7" />
+        android:src="@mipmap/ic_launcher" />
 
     <EditText
         android:id="@+id/edtTxtUserName"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:ems="10"
+        android:layout_marginTop="41dp"
         android:hint="UserName"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteY="139dp"
-        tools:layout_editor_absoluteX="32dp" />
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/edtTxtPwd"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:ems="10"
+
         android:hint="Password"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteY="198dp"
-        tools:layout_editor_absoluteX="32dp" />
+        android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/btnSign"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:text="Sign"
-        tools:layout_editor_absoluteY="250dp"
-        tools:layout_editor_absoluteX="32dp" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="Login"
-        tools:layout_editor_absoluteY="250dp"
-        tools:layout_editor_absoluteX="178dp" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline7"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_marginTop="9dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSign"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:text="Sign" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Login" />
+
+    </LinearLayout>
+
+</LinearLayout>

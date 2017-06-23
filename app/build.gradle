@@ -68,4 +68,6 @@ dependencies {
     compile 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.3.2'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:25.3.1'
+    compile 'com.orhanobut:logger:1.15'
+
 }

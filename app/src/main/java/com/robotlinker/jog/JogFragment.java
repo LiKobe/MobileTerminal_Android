@@ -2,32 +2,32 @@ package com.robotlinker.jog;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.robotlinker.R;
-import com.robotlinker.base.AppHelper;
-import com.robotlinker.base.BaseFragment;
-import com.robotlinker.base.PublishEvent;
+import com.robotlinker.base.BaseEventFragment;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import ros.rosbridge.ROSBridgeClient;
-
-import org.greenrobot.eventbus.EventBus;
+import ros.rosbridge.event.PublishEvent;
 
 
 /**
  * Created by gaowubin on 2017/6/14.
  */
 
-public class JogFragment extends BaseFragment {
+public class JogFragment extends BaseEventFragment {
 
-    private static final String TAG = "jogActivity";
 
-    ROSBridgeClient client;
-
+    @BindView(R.id.tvJogInfo)
+    TextView tvJogInfo;
 
     @Nullable
     @Override
@@ -41,18 +41,19 @@ public class JogFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        EventBus.getDefault().register(this);
 
-        client = AppHelper.getRosClient();
     }
 
-//    public void onEvent(final PublishEvent event) {
-//        if("/map".equals(event.name)) {
+    @Subscribe(threadMode = ThreadMode.ASYNC)
+    public void onEvent(PublishEvent event) {
+//        if ("/map".equals(event.name)) {
 ////            parseMapTopic(event);
 //            return;
 //        }
-//
-//        //show data on TextView
+
+        Logger.i("info: " + event.msg);
+
+        //show data on TextView
 //        getActivity().runOnUiThread(new Runnable() {
 //            @Override
 //            public void run() {
@@ -69,7 +70,9 @@ public class JogFragment extends BaseFragment {
 //            }
 //        });
 //        Log.d(TAG, event.msg);
-//    }
+    }
+
+
 //
 //    public void Subscribe(String detailName, boolean isSubscribe) {
 //        if(isSubscribe) {
@@ -83,9 +86,4 @@ public class JogFragment extends BaseFragment {
 //
 //    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
 }

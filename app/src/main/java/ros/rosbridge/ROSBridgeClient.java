@@ -57,6 +57,7 @@ public class ROSBridgeClient extends ROSClient {
             try {
                 result = client.connectBlocking();
             } catch (InterruptedException ex) {
+                ex.printStackTrace();
             }
         }
         return result;
