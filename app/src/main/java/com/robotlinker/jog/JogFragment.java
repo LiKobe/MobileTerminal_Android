@@ -70,18 +70,6 @@ public class JogFragment extends BaseFragment {
 //        });
 //        Log.d(TAG, event.msg);
 //    }
-//
-//    public void Subscribe(String detailName, boolean isSubscribe) {
-//        if(isSubscribe) {
-//            client.send("{\"op\":\"unsubscribe\",\"topic\":\"" + detailName + "\"}");
-//            btnSubTopic.setText("Subscribe");
-//        } else {
-//            client.send("{\"op\":\"subscribe\",\"topic\":\"" + detailName + "\"}");
-//            btnSubTopic.setText("Unsubscribe");
-//        }
-//        isSubscribe = !isSubscribe;
-//
-//    }
 
     @Override
     public void onDestroy() {

@@ -32,9 +32,6 @@ public class RobotFragment extends BaseFragment {
 
     ROSBridgeClient client;
 
-    private String[] topicList = new String[]{};
-
-
     @BindView(R.id.livRobot)
     ListView livRobot;
     RobotAdapter adapter;
@@ -58,13 +55,10 @@ public class RobotFragment extends BaseFragment {
 
         try {
             //Get list data
-            topicList = client.getTopics();
+            AppHelper.setTopicList(client.getTopics());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        int a = topicList.length;
-
     }
 
     private List<Robot> getData() {
