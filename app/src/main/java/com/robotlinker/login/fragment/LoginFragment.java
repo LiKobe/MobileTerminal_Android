@@ -33,6 +33,9 @@ import butterknife.ButterKnife;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 
+import ros.rosbridge.ROSBridgeClient;
+import ros.ROSClient;
+
 /**
  * Created by gaowubin on 2017/6/14.
  */
@@ -83,7 +86,8 @@ public class LoginFragment extends BaseFragment {
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(@NonNull Object o) throws Exception {
-                        signInUser();
+                        //signInUser();
+                        connectRos("192.168.1.102","9090");
                     }
                 });
 
@@ -199,5 +203,37 @@ public class LoginFragment extends BaseFragment {
         continuation.setAuthenticationDetails(authenticationDetails);
         continuation.continueTask();
     }
+
+    //rosbridge 连接
+    ROSBridgeClient client;
+
+    private void connectRos(String ip, String port) {
+        client = new ROSBridgeClient("ws://" + ip + ":" + port);
+        boolean conneSucc = client.connect(new ROSClient.ConnectionStatusListener() {
+            @Override
+            public void onConnect() {
+                client.setDebug(true);
+                AppHelper.setRosClient(client);
+//                showTip("Connect ROS success");
+                Log.d(TAG,"Connect ROS success");
+                launchUser();
+            }
+
+            @Override
+            public void onDisconnect(boolean normal, String reason, int code) {
+//                showTip("ROS disconnect");
+                Log.d(TAG,"ROS disconnect");
+            }
+
+            @Override
+            public void onError(Exception ex) {
+                ex.printStackTrace();
+//                showTip("ROS communication error");
+                Log.d(TAG,"ROS communication error");
+            }
+        });
+    }
+
+
 
 }

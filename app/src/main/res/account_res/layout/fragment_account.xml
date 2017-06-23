@@ -70,10 +70,10 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginBottom="11dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="18dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="18dp"
         android:layout_marginTop="12dp"
@@ -88,7 +88,7 @@
         app:srcCompat="@android:drawable/divider_horizontal_textfield"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintTop_creator="1"
-        tools:layout_editor_absoluteX="6dp" />
+        android:layout_marginEnd="16dp" />
 
     <TextView
         android:id="@+id/tvGeneralInformation"
@@ -104,7 +104,8 @@
         app:layout_constraintTop_toBottomOf="@+id/ivPic"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:id="@+id/tvConnectingTime"
@@ -123,7 +124,8 @@
         app:layout_constraintTop_toBottomOf="@+id/tvGeneralInformation"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:id="@+id/tvHistoryEvents"
@@ -139,7 +141,8 @@
         app:layout_constraintTop_toBottomOf="@+id/tvConnectingTime"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:id="@+id/tvBills"
@@ -154,7 +157,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHistoryEvents"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/tvDate"
@@ -163,7 +167,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="0dp"
         android:text="Week , month , Year"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -175,7 +178,7 @@
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintTop_creator="1"
 
-        />
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -198,7 +201,7 @@
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintTop_creator="1"
 
-        />
+        android:layout_marginEnd="16dp" />
 
     <TextView
         android:id="@+id/tvOtherSettings"
@@ -215,7 +218,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDate"
         tools:layout_constraintTop_creator="1"
 
-        />
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/tvSignOut"
@@ -232,7 +235,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvOtherSettings"
         tools:layout_constraintTop_creator="1"
 
-        />
+        android:layout_marginEnd="8dp" />
 
 
 </android.support.constraint.ConstraintLayout>

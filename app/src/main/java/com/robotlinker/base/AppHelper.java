@@ -13,6 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import ros.rosbridge.ROSBridgeClient;
+
 /**
  * Created by kobeli on 2017/6/20.
  */
@@ -20,6 +22,18 @@ import java.util.Map;
 public class AppHelper {
     // App settings
 
+    //rosbridge 连接
+    private static ROSBridgeClient currentClient;
+
+    public static ROSBridgeClient getRosClient() {
+        return currentClient;
+    }
+
+    public static void setRosClient(ROSBridgeClient client) {
+        currentClient = client;
+    }
+
+    //aws cognoti 连接
     private static List<String> attributeDisplaySeq;
     private static Map<String, String> signUpFieldsC2O;
     private static Map<String, String> signUpFieldsO2C;

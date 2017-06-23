@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.robotlinker.R;
+import com.robotlinker.base.AppHelper;
 import com.robotlinker.base.BaseFragment;
 import com.robotlinker.robot.adapter.RobotAdapter;
 import com.robotlinker.robot.bean.Robot;
@@ -21,11 +22,18 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import ros.rosbridge.ROSBridgeClient;
+
 /**
  * Created by gaowubin on 2017/6/14.
  */
 
 public class RobotFragment extends BaseFragment {
+
+    ROSBridgeClient client;
+
+    private String[] topicList = new String[]{};
+
 
     @BindView(R.id.livRobot)
     ListView livRobot;
@@ -45,6 +53,17 @@ public class RobotFragment extends BaseFragment {
         adapter = new RobotAdapter(mContext);
         adapter.setData(getData());
         livRobot.setAdapter(adapter);
+
+        client = AppHelper.getRosClient();
+
+        try {
+            //Get list data
+            topicList = client.getTopics();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        int a = topicList.length;
 
     }
 
