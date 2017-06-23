@@ -29,6 +29,7 @@ public class JogFragment extends BaseEventFragment {
     @BindView(R.id.tvJogInfo)
     TextView tvJogInfo;
 
+    String s = "";
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,46 +45,16 @@ public class JogFragment extends BaseEventFragment {
 
     }
 
-    @Subscribe(threadMode = ThreadMode.ASYNC)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(PublishEvent event) {
-//        if ("/map".equals(event.name)) {
-////            parseMapTopic(event);
-//            return;
-//        }
-
+        if (s.length() > 2000) {
+            s = "";
+        }
+        s = s + event.msg + "\n";
+        tvJogInfo.setText("" + event.name + "\n\n" + s);
         Logger.i("info: " + event.msg);
 
-        //show data on TextView
-//        getActivity().runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                if(tvLog.getText().length() > 2000) {
-//                    tvLog.setText("");
-//                }
-//
-//                tvLog.setText(tvLog.getText() + "\ninfo:  " + event.msg + "\n");
-//
-//                int offset=tvLog.getLineCount()*tvLog.getLineHeight();
-//                if(offset>tvLog.getHeight()){
-//                    tvLog.scrollTo(0,offset-tvLog.getHeight());
-//                }
-//            }
-//        });
-//        Log.d(TAG, event.msg);
     }
 
-
-//
-//    public void Subscribe(String detailName, boolean isSubscribe) {
-//        if(isSubscribe) {
-//            client.send("{\"op\":\"unsubscribe\",\"topic\":\"" + detailName + "\"}");
-//            btnSubTopic.setText("Subscribe");
-//        } else {
-//            client.send("{\"op\":\"subscribe\",\"topic\":\"" + detailName + "\"}");
-//            btnSubTopic.setText("Unsubscribe");
-//        }
-//        isSubscribe = !isSubscribe;
-//
-//    }
 
 }

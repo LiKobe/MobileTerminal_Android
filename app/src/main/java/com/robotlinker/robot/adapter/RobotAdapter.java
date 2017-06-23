@@ -58,8 +58,8 @@ public class RobotAdapter extends BaseAdapterInject<String> {
             Logger.i("onClickSubscribe");
             String data = btnSubscribe.getText().toString();
             boolean isSubscribe = data.equals("subscribe") ? true : false;
+            subscribe(tvRobotName.getText().toString(), isSubscribe);
             btnSubscribe.setText(isSubscribe ? "unSubscribe" : "subscribe");
-            subscribe(data, isSubscribe);
 
         }
 
