@@ -33,6 +33,44 @@ public class AppHelper {
         currentClient = client;
     }
 
+    //topic
+    private static String[] topicList;
+    public static String[] getTopicList() {
+        return topicList;
+    }
+    public static void setTopicList(String[] topicList) {
+        AppHelper.topicList = topicList;
+    }
+
+    //当前topic detail
+    private static String currentTopicDetail;
+    public static String getCurrentTopicDetail() {
+        if (currentTopicDetail == null)
+            return "";
+        return currentTopicDetail;
+    }
+    public static void setCurrentTopicDetail(String currentTopicDetail) {
+        AppHelper.currentTopicDetail = currentTopicDetail;
+    }
+
+    //topic detail Subscribe or unSubscribe
+    public void Subscribe(String detailName, boolean isSubscribe) {
+        if(!isSubscribe) {
+            if (getCurrentTopicDetail().equalsIgnoreCase(detailName)) {
+                currentClient.send("{\"op\":\"unsubscribe\",\"topic\":\"" + detailName + "\"}");
+                setCurrentTopicDetail(null);
+            }
+        } else {
+            if (getCurrentTopicDetail().equalsIgnoreCase(detailName)) {
+                return;
+            }
+            currentClient.send("{\"op\":\"subscribe\",\"topic\":\"" + detailName + "\"}");
+            setCurrentTopicDetail(detailName);
+        }
+    }
+
+
+
     //aws cognoti 连接
     private static List<String> attributeDisplaySeq;
     private static Map<String, String> signUpFieldsC2O;
@@ -108,7 +146,6 @@ public class AppHelper {
 //        trustedDevices = new ArrayList<ItemToDisplay>();
 //        firstTimeLogInDetails = new ArrayList<ItemToDisplay>();
 //        firstTimeLogInUpDatedAttributes= new HashMap<String, String>();
-
     }
 
     public static CognitoUserPool getPool() {
