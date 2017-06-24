@@ -1,13 +1,17 @@
 package com.robotlinker.login.fragment;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession;
@@ -51,58 +55,6 @@ public class LoginFragment extends BaseFragment {
     // User Details
     private String username;
     private String password;
-    //
-    AuthenticationHandler authenticationHandler = new AuthenticationHandler() {
-        @Override
-        public void onSuccess(CognitoUserSession cognitoUserSession, CognitoDevice device) {
-            Logger.i("Auth Success");
-            AppHelper.setCurrSession(cognitoUserSession);
-//            closeWaitDialog();
-            launchUser();
-        }
-
-        @Override
-        public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String username) {
-//            closeWaitDialog();
-            Locale.setDefault(Locale.US);
-            getUserAuthentication(authenticationContinuation, username);
-        }
-
-        @Override
-        public void getMFACode(MultiFactorAuthenticationContinuation multiFactorAuthenticationContinuation) {
-
-        }
-
-        @Override
-        public void onFailure(Exception e) {
-//            closeWaitDialog();
-//            TextView label = (TextView) findViewById(R.id.textViewUserIdMessage);
-//            label.setText("Sign-in failed");
-//            inPassword.setBackground(getDrawable(R.drawable.text_border_error));
-//
-//            label = (TextView) findViewById(R.id.textViewUserIdMessage);
-//            label.setText("Sign-in failed");
-//            inUsername.setBackground(getDrawable(R.drawable.text_border_error));
-//
-//            showDialogMessage("Sign-in failed", AppHelper.formatException(e));
-        }
-
-        @Override
-        public void authenticationChallenge(ChallengeContinuation continuation) {
-            /**
-             * For Custom authentication challenge, implement your logic to present challenge to the
-             * user and pass the user's responses to the continuation.
-             */
-//            if ("NEW_PASSWORD_REQUIRED".equals(continuation.getChallengeName())) {
-//                // This is the first sign-in attempt for an admin created user
-//                newPasswordContinuation = (NewPasswordContinuation) continuation;
-//                AppHelper.setUserAttributeForDisplayFirstLogIn(newPasswordContinuation.getCurrentUserAttributes(),
-//                        newPasswordContinuation.getRequiredAttributes());
-//                closeWaitDialog();
-//                firstTimeSignIn();
-//            }
-        }
-    };
 
     @Nullable
     @Override
@@ -134,7 +86,6 @@ public class LoginFragment extends BaseFragment {
                     @Override
                     public void accept(@NonNull Object o) throws Exception {
                         signInUser();
-//                        connectRos("192.168.1.102","9090");
                     }
                 });
 
@@ -142,17 +93,12 @@ public class LoginFragment extends BaseFragment {
 
     private void launchUser() {
         startActivity(new Intent(mContext, MainActivity.class));
-//        Intent userActivity = new Intent(this, UserActivity.class);
-//        userActivity.putExtra("name", username);
-//        startActivityForResult(userActivity, 4);
     }
 
     private void signInUser() {
         username = edtTxtUserName.getText().toString();
         if(username == null || username.length() < 1) {
-//            TextView label = (TextView) findViewById(R.id.textViewUserIdMessage);
-//            label.setText(inUsername.getHint()+" cannot be empty");
-//            inUsername.setBackground(getDrawable(R.drawable.text_border_error));
+            Toast.makeText(getActivity().getApplicationContext(),"username cannot be empty",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -160,15 +106,48 @@ public class LoginFragment extends BaseFragment {
 
         password = edtTxtPwd.getText().toString();
         if(password == null || password.length() < 1) {
-//            TextView label = (TextView) findViewById(R.id.textViewUserPasswordMessage);
-//            label.setText(inPassword.getHint()+" cannot be empty");
-//            inPassword.setBackground(getDrawable(R.drawable.text_border_error));
+            Toast.makeText(getActivity().getApplicationContext(),"password cannot be empty",Toast.LENGTH_SHORT).show();
             return;
         }
 
-//        showWaitDialog("Signing in...");
+        showWaitDialog("Signing in...");
         AppHelper.getPool().getUser(username).getSessionInBackground(authenticationHandler);
     }
+
+    AuthenticationHandler authenticationHandler = new AuthenticationHandler() {
+        @Override
+        public void onSuccess(CognitoUserSession cognitoUserSession, CognitoDevice device) {
+            Logger.i("Auth Success");
+            closeWaitDialog();
+            AppHelper.setCurrSession(cognitoUserSession);
+            launchUser();
+        }
+
+        @Override
+        public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String username) {
+            Locale.setDefault(Locale.US);
+            getUserAuthentication(authenticationContinuation, username);
+        }
+
+        @Override
+        public void getMFACode(MultiFactorAuthenticationContinuation multiFactorAuthenticationContinuation) {
+
+        }
+
+        @Override
+        public void onFailure(Exception e) {
+            closeWaitDialog();
+            Toast.makeText(getActivity().getApplicationContext(),"Sign-in failed",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void authenticationChallenge(ChallengeContinuation continuation) {
+            /**
+             * For Custom authentication challenge, implement your logic to present challenge to the
+             * user and pass the user's responses to the continuation.
+             */
+        }
+    };
 
     private void getUserAuthentication(AuthenticationContinuation continuation, String username) {
         if(username != null) {
@@ -176,21 +155,16 @@ public class LoginFragment extends BaseFragment {
             AppHelper.setUser(username);
         }
         if(this.password == null) {
-//            inUsername.setText(username);
-//            password = inPassword.getText().toString();
-//            if(password == null) {
-//                TextView label = (TextView) findViewById(R.id.textViewUserPasswordMessage);
-//                label.setText(inPassword.getHint()+" enter password");
-//                inPassword.setBackground(getDrawable(R.drawable.text_border_error));
-//                return;
-//            }
-//
-//            if(password.length() < 1) {
-//                TextView label = (TextView) findViewById(R.id.textViewUserPasswordMessage);
-//                label.setText(inPassword.getHint()+" enter password");
-//                inPassword.setBackground(getDrawable(R.drawable.text_border_error));
-//                return;
-//            }
+            password = edtTxtPwd.getText().toString();
+            if(password == null) {
+                Toast.makeText(getActivity().getApplicationContext(),"password cannot be empty",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(password.length() < 1) {
+                Toast.makeText(getActivity().getApplicationContext(),"password cannot be empty",Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
         AuthenticationDetails authenticationDetails = new AuthenticationDetails(this.username, password, null);
         continuation.setAuthenticationDetails(authenticationDetails);
@@ -199,6 +173,22 @@ public class LoginFragment extends BaseFragment {
 
 
 
+    private ProgressDialog waitDialog;
 
+    private void showWaitDialog(String message) {
+        closeWaitDialog();
+        waitDialog = new ProgressDialog(getActivity());
+        waitDialog.setTitle(message);
+        waitDialog.show();
+    }
+
+    private void closeWaitDialog() {
+        try {
+            waitDialog.dismiss();
+        }
+        catch (Exception e) {
+            //
+        }
+    }
 
 }
