@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.robotlinker.R;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by gaowubin on 2017/4/25.
@@ -127,6 +128,16 @@ public class BaseActivity extends FragmentActivity {
         } else {
             supportFinishAfterTransition();
         }
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override
